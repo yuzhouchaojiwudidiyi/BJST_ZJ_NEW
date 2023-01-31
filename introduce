@@ -1,0 +1,91 @@
+一. 屏幕适配
+   1.    implementation 'com.github.JessYanCoding:AndroidAutoSize:v1.2.1'
+   2.    androidManifest.xml application内加入
+                 <meta-data
+                     android:name="design_width_in_dp"
+                     android:value="1024" />
+                 <meta-data
+                     android:name="design_height_in_dp"
+                     android:value="600" />
+   3.    application中加入
+                 AutoSizeConfig.getInstance().getUnitsManager()
+                         .setSupportDP(true)
+                         .setSupportSP(true)
+                         .setSupportSubunits(Subunits.MM);
+
+二. 串口连接
+    1.    implementation project(path: ':serialportlib')
+    2.    类实现 implements IOpenSerialPortListener, ISerialPortDataListener {
+    3.    初始化
+        //TTL7
+        private void initTtys() {
+            if (mSerialPortHelper == null) {
+                mSerialPortHelper = new SerialPortHelper();
+                mSerialPortHelper.setPort("/dev/ttyS7");                    //串口名
+                mSerialPortHelper.setBaudRate(9600);   //9600               //波特率
+                mSerialPortHelper.setStopBits(STOPB.getStopBit(STOPB.B1));  //停止位1
+                mSerialPortHelper.setDataBits(DATAB.getDataBit(DATAB.CS8)); //数据位
+                mSerialPortHelper.setParity(PARITY.getParity(PARITY.NONE));  //无奇偶校验
+                mSerialPortHelper.setFlowCon(FLOWCON.getFlowCon(FLOWCON.NONE)); //无硬件控流
+            }
+            mSerialPortHelper.setIOpenSerialPortListener(this);
+            mSerialPortHelper.setISerialPortDataListener(this);+
+            mSerialPortHelper.open();
+        }
+
+三.  语音合成
+    1.    implementation project(path: ':tts')
+    2.    libs文件夹下加入armeabi文件 加入libem_xx.so   libspeechmsc.so  libttsaisound.so  libvadlib.so
+    3.    defaultconfig中加入
+          ndk {
+            abiFilters  'armeabi'
+          }
+    4.    android内加
+              sourceSets {
+                  main {
+                      jniLibs.srcDirs = ['libs']
+                  }
+              }
+    5.    初始化
+          tts = TTS.getInstance();//获取单例对象
+          tts.init(this, TTSConstants.TTS_XIAOYAN);//初始化
+          tts.speakText("准备下载文件");
+四.   数据库
+    1.    implementation 'org.litepal.guolindev:core:3.2.3'
+    2.    application extends LitePalApplication {}
+    3.    application中初始化          LitePal.initialize(this);
+    4.    bean类 public class DbTestBean extends LitePalSupport {}
+    5.    assets包里 加入litepal.xml文件
+    6.    创建数据库 SQLiteDatabase db = LitePal.getDatabase();
+    7.    删除  int i = LitePal.deleteAll(DbCardQrBean.class, "orderNmber=?", liuShuiHao);
+          添加  DbTestBean dbTestBean = new DbTestBean();       boolean save = dbTestBean.save();
+          查询  List<DbTestBean> all = LitePal.findAll(DbTestBean.class);
+
+
+
+
+五.   d8 读卡器
+    1. jar包加入  dc_mate_202208041107.jar
+    2. jniLibs包中加入 libdc_mobile_mate.so   libdcrf32.so  libwlt2bmp.so
+    3. 加入权限
+    <uses-permission android:name="android.permission.INTERNET"
+    />
+    <uses-permission
+    android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission
+    android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission
+    android:name="android.permission.READ_PHONE_STATE" />
+    4.开始使用
+    //向系统申请使用USB权限,此过程为异步,建议放在程序启动时调用。
+    BasicOper.dc_AUSB_ReqPermission(this);
+    //打开端口，usb模式，打开之前必须确保已经获取到USB权限，返回值为设备句柄号。
+    int devHandle = BasicOper.dc_open("AUSB",this,"",0);
+    if(devHandle>0){  
+      Log.d("open","dc_open success devHandle = "+devHandle);
+    }
+
+
+
+
+

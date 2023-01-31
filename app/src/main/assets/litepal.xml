@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<litepal>
+    <!--数据库的名称    -->
+    <dbname value="wellsun_db"></dbname>
+    <!-- 数据的版本，后续升级需要改动版本号   -->
+    <version value="2"></version>
+    <!-- 管理数据库中的表，一个类对应的一个表   -->
+    <list>
+        <!--消费信息-->
+        <mapping class="com.wellsun.bjst_zj_new.db.DbTestBean"></mapping>
+
+
+    </list>
+</litepal>
