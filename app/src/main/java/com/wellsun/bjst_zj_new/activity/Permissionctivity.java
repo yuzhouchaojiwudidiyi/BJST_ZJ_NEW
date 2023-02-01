@@ -31,9 +31,8 @@ import it.sauronsoftware.ftp4j.FTPDataTransferListener;
 import it.sauronsoftware.ftp4j.FTPFile;
 
 public class Permissionctivity extends BaseActivity {
-    private static String[] PERMISSIONS_STORAGE = {
+      String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.CAMERA,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     String localPathDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/save_wellsun/";
@@ -46,6 +45,7 @@ public class Permissionctivity extends BaseActivity {
 
     @Override
     public void initView() {
+        startActivity(new Intent(mContext, MainActivity.class));
         initPermissions();
     }
 
@@ -253,6 +253,7 @@ public class Permissionctivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
             Log.v("ftp=", "登录失败=" + e);
+            return;
         }
     }
 

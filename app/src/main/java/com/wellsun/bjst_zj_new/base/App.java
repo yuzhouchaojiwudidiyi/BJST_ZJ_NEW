@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.cczhr.TTS;
 import com.cczhr.TTSConstants;
+import com.wellsun.bjst_zj_new.MainActivity;
 import com.wellsun.bjst_zj_new.data.StaticData;
 import com.wellsun.bjst_zj_new.utils.CommonUtils;
 
@@ -42,7 +43,9 @@ public class App extends LitePalApplication {
         StaticData.app_version_name = CommonUtils.getVerName(this) + "";
         StaticData.versionCode = CommonUtils.getVersionCode(this);
         //语音合成
-
+        //获取单例对象
+        tts = TTS.getInstance();
+        tts.init(this, TTSConstants.TTS_XIAOYAN);
     }
 
     /**

@@ -61,7 +61,7 @@ dependencies {
     //json工具类
     implementation 'com.alibaba:fastjson:1.2.24'
     //权限
-    implementation 'com.github.getActivity:XXPermissions:13.5'
+    implementation  'com.github.getActivity:XXPermissions:16.6'
     //串口
     implementation project(path: ':serialportlib')
     //语音合成

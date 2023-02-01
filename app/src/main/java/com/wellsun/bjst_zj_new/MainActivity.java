@@ -1,5 +1,6 @@
 package com.wellsun.bjst_zj_new;
 
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.cczhr.TTS;
 import com.cczhr.TTSConstants;
 import com.wellsun.bjst_zj_new.base.App;
+import com.wellsun.bjst_zj_new.base.BaseActivity;
+import com.wellsun.bjst_zj_new.broacast.USBReceiver;
 import com.wellsun.bjst_zj_new.db.DbTestBean;
 
 import org.litepal.LitePal;
@@ -17,49 +20,43 @@ import org.litepal.LitePal;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
-    private TextView tv1;
-    private TextView tv2;
-    private TTS tts;
+    public int getLayoutId() {
+        return R.layout.activity_main;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        //获取单例对象
-        tts = TTS.getInstance();
-        tts.init(MainActivity.this, TTSConstants.TTS_XIAOYAN);//初始化
-        initView();
+    public void initView() {
+
     }
 
-    private void initView() {
-        tv1 = (TextView) findViewById(R.id.tv1);
-        tv2 = (TextView) findViewById(R.id.tv2);
+    @Override
+    public void setListener() {
+        initUsbInsert();  //U盘插入监听
 
-        tv1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DbTestBean dbTestBean = new DbTestBean();
-                dbTestBean.setName(System.currentTimeMillis() + "");
-                boolean save = dbTestBean.save();
-                boolean saved = dbTestBean.isSaved();
-                Log.v("内容是,", save + "   " + saved);
-
-//                LitePal.delete(DbTestBean.class,1);
-                tts.stop();
-                tts.speakText(System.currentTimeMillis() + "");
-
-            }
-        });
-
-        tv2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                List<DbTestBean> all = LitePal.findAll(DbTestBean.class);
-                Log.v("内容是", Arrays.toString(all.toArray()));
-
-            }
-        });
     }
+
+    @Override
+    public void initData() {
+
+    }
+
+    @Override
+    public void onClick(View view) {
+
+    }
+
+    //监听U盘插入
+    private void initUsbInsert() {
+        USBReceiver mUsbReceiver = new USBReceiver(this);
+        IntentFilter intentFilter2 = new IntentFilter();
+        intentFilter2.addAction("android.intent.action.MEDIA_MOUNTED");
+        intentFilter2.addAction("android.intent.action.MEDIA_UNMOUNTED");
+        intentFilter2.addAction("android.intent.action.MEDIA_EJECT");
+        intentFilter2.addDataScheme("file");
+        registerReceiver(mUsbReceiver, intentFilter2);
+    }
+
+
 }
