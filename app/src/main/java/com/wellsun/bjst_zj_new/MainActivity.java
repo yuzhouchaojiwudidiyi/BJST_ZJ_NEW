@@ -7,6 +7,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.cczhr.TTS;
+import com.cczhr.TTSConstants;
+import com.wellsun.bjst_zj_new.base.App;
 import com.wellsun.bjst_zj_new.db.DbTestBean;
 
 import org.litepal.LitePal;
@@ -18,11 +21,15 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView tv1;
     private TextView tv2;
+    private TTS tts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //获取单例对象
+        tts = TTS.getInstance();
+        tts.init(MainActivity.this, TTSConstants.TTS_XIAOYAN);//初始化
         initView();
     }
 
@@ -34,12 +41,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DbTestBean dbTestBean = new DbTestBean();
-                dbTestBean.setName(System.currentTimeMillis()+"");
+                dbTestBean.setName(System.currentTimeMillis() + "");
                 boolean save = dbTestBean.save();
                 boolean saved = dbTestBean.isSaved();
-                Log.v("内容是,",save+"   "+saved);
+                Log.v("内容是,", save + "   " + saved);
 
 //                LitePal.delete(DbTestBean.class,1);
+                tts.stop();
+                tts.speakText(System.currentTimeMillis() + "");
 
             }
         });

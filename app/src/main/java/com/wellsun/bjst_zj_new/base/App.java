@@ -3,6 +3,8 @@ package com.wellsun.bjst_zj_new.base;
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.cczhr.TTS;
+import com.cczhr.TTSConstants;
 import com.wellsun.bjst_zj_new.data.StaticData;
 import com.wellsun.bjst_zj_new.utils.CommonUtils;
 
@@ -25,6 +27,7 @@ public class App extends LitePalApplication {
     public List<Activity> activities = new ArrayList<Activity>();
     //app的上下文
     public static App appContext;
+    public static TTS tts;
 
     @Override
     public void onCreate() {
@@ -38,6 +41,8 @@ public class App extends LitePalApplication {
         //程序版本
         StaticData.app_version_name = CommonUtils.getVerName(this) + "";
         StaticData.versionCode = CommonUtils.getVersionCode(this);
+        //语音合成
+
     }
 
     /**
