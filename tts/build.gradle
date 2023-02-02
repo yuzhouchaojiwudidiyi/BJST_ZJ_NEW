@@ -24,6 +24,7 @@ android {
         doNotStrip "*/armeabi/*.so"
     }
 
+
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 30
@@ -32,6 +33,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
     }
 
     buildTypes {

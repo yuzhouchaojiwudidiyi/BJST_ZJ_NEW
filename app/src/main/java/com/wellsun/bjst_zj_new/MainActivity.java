@@ -10,10 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cczhr.TTS;
 import com.cczhr.TTSConstants;
+import com.decard.NDKMethod.BasicOper;
 import com.wellsun.bjst_zj_new.base.App;
 import com.wellsun.bjst_zj_new.base.BaseActivity;
 import com.wellsun.bjst_zj_new.broacast.USBReceiver;
 import com.wellsun.bjst_zj_new.db.DbTestBean;
+import com.wellsun.bjst_zj_new.readcard.Cmd;
 
 import org.litepal.LitePal;
 
@@ -39,6 +41,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initData() {
+//        Cmd.connectD8(this);          //初始化读卡器
 
     }
 

@@ -43,7 +43,6 @@ public class App extends LitePalApplication {
         StaticData.app_version_name = CommonUtils.getVerName(this) + "";
         StaticData.versionCode = CommonUtils.getVersionCode(this);
         //语音合成
-        //获取单例对象
         tts = TTS.getInstance();
         tts.init(this, TTSConstants.TTS_XIAOYAN);
     }

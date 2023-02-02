@@ -4,7 +4,7 @@ android {
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
-//    .so文件 在libs方式
+//    .so文件
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
@@ -20,11 +20,11 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        // jniLibs方式
+
         ndk {
             //选择要添加的对应cpu类型的.so库。
             abiFilters 'armeabi'
-            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64', 'arm64-v8a','armeabi'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64', 'arm64-v8a','armeabi','armeabi-v7a'
         }
     }
 
@@ -61,7 +61,7 @@ dependencies {
     //json工具类
     implementation 'com.alibaba:fastjson:1.2.24'
     //权限
-    implementation  'com.github.getActivity:XXPermissions:16.6'
+    implementation 'com.github.getActivity:XXPermissions:16.6'
     //串口
     implementation project(path: ':serialportlib')
     //语音合成
@@ -69,7 +69,7 @@ dependencies {
     //数据库
     implementation 'org.litepal.guolindev:core:3.2.3'
     //d8读卡器
-    implementation files('libs/dc_mate_202208041107.jar')
+    implementation files('libs/dc_mate_202008071648.jar')
     //ftp服务
     implementation files('libs/ftp4j-1.7.2.jar')
 }

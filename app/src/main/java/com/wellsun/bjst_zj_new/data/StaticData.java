@@ -27,5 +27,11 @@ public class StaticData {
     public static String mapPrice_version = "";
     //惩罚额度
     public static Integer punish_amount = 0;
+    //读卡器连接状况
+    public static boolean readCardState;
+    //psam卡状况
+    public static boolean samCardState;
+    //psam卡终端机编号
+    public static String pasmId="";
     //
 }
