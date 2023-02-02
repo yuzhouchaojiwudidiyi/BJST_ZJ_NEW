@@ -2,6 +2,7 @@ package com.wellsun.bjst_zj_new;
 
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -41,7 +42,14 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initData() {
-//        Cmd.connectD8(this);          //初始化读卡器
+        Cmd.connectD8(this);          //初始化读卡器
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+             App.tts.speakText("0123456789");
+            }
+        },3000);
 
     }
 
