@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 28
     buildToolsVersion "30.0.3"
 
 //    .so文件
@@ -14,12 +14,11 @@ android {
     defaultConfig {
         applicationId "com.wellsun.bjst_zj_new"
         minSdkVersion 19
-        targetSdkVersion 31
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
 
         ndk {
             //选择要添加的对应cpu类型的.so库。
@@ -72,4 +71,5 @@ dependencies {
     implementation files('libs/dc_mate_202008071648.jar')
     //ftp服务
     implementation files('libs/ftp4j-1.7.2.jar')
+    implementation files('libs/BASE64.jar')
 }

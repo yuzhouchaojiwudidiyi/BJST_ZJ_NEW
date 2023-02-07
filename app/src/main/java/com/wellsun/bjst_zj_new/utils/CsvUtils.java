@@ -3,7 +3,6 @@ package com.wellsun.bjst_zj_new.utils;
 import android.os.Environment;
 import android.util.Log;
 
-import com.wellsun.bjst_zj_new.base.App;
 import com.wellsun.bjst_zj_new.data.StaticData;
 
 import java.io.BufferedReader;
@@ -20,10 +19,8 @@ import java.util.Map;
  * describe :
  */
 public class CsvUtils {
-    static String savePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/save_wellsun/";
     static ArrayList<String> lineList = new ArrayList<>();         //读取矩阵表每一行
-
-
+    static String savePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/save_wellsun/";
     //    距离
     public static Map<String, String> getDistanceMap() {
         File[] files = new File(savePath).listFiles();
@@ -59,7 +56,6 @@ public class CsvUtils {
                     String[] lineNextList = lineNext.split(",");
                     String startSplit = lineNextList[0];
                     for (int j = 1; j < lineNextList.length; j++) { //遍历每一行内容
-//                    for (int j = 1; j < i + 1; j++) {               //遍历每一行内容  遍历对半
                         String distance = lineNextList[j];           //距离
                         String endSplit = line1List[j];             //第一行 每个站点
                         mapDistance.put(startSplit + "_" + endSplit, distance);
@@ -77,9 +73,13 @@ public class CsvUtils {
     public static ArrayList<String> getBlackList() {
         ArrayList<String> blackList = new ArrayList<>();
         File[] files = new File(savePath).listFiles();
+        Log.v("文件","savePath="+savePath);
+
         if (files == null) {
             return null;
         }
+        Log.v("文件","files="+files.length);
+
         for (int i = 0; i < files.length; i++) {
             if (files[i].getName().toUpperCase().startsWith("BL")) {
                 //获取版本号
@@ -101,6 +101,8 @@ public class CsvUtils {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
+
             }
 
         }

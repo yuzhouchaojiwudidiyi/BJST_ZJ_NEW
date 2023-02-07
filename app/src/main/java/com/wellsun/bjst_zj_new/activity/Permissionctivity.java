@@ -1,17 +1,13 @@
 package com.wellsun.bjst_zj_new.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 
 import com.hjq.permissions.OnPermissionCallback;
-import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
 import com.wellsun.bjst_zj_new.MainActivity;
 import com.wellsun.bjst_zj_new.R;
@@ -24,6 +20,7 @@ import com.wellsun.bjst_zj_new.utils.ToastPrint;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import it.sauronsoftware.ftp4j.FTPClient;
@@ -45,7 +42,7 @@ public class Permissionctivity extends BaseActivity {
 
     @Override
     public void initView() {
-        startActivity(new Intent(mContext, MainActivity.class));
+//        startActivity(new Intent(mContext, MainActivity.class));
         initPermissions();
     }
 
@@ -100,6 +97,7 @@ public class Permissionctivity extends BaseActivity {
                 downFile();
                 StaticData.blackList = CsvUtils.getBlackList();
                 StaticData.distanceMap = CsvUtils.getDistanceMap();
+                Log.v("内容是=", Arrays.asList(StaticData.distanceMap).toString());
                 StaticData.mapPrice = CsvUtils.getPrice();
                 //数据库 处理 黑名单  距离矩阵   距离票价
                 if (!isInstallApk) { //如果安装apk 不跳转

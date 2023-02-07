@@ -26,7 +26,8 @@ public class SPUtils extends BasePreference {
     //用户名的key
     private static final String USER_NAME = "user_name";
     private static final String REMEBER_PAASS_WORD = "remeber_pass_word";
-
+    //本地交易流水号
+    private static final String LocalTradeNumber = "local_trade_number"; // 本地交易流水号
 
     /**
      * 账号
@@ -53,6 +54,19 @@ public class SPUtils extends BasePreference {
 
     public void setREMEBER_PAASS_WORD(Boolean remeber_pass_word) {
         setBoolean(REMEBER_PAASS_WORD, remeber_pass_word);
+    }
+
+    /**
+     * 本地交易流水号
+     *
+     * @return
+     */
+    public int getLocalTradeNumber() {
+        return getInt(LocalTradeNumber);
+    }
+
+    public void setLocalTradeNumber(int local_trade_number) {
+        setInt(LocalTradeNumber, local_trade_number);
     }
 
     public void clear() {

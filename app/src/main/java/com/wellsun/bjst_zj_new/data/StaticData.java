@@ -32,6 +32,24 @@ public class StaticData {
     //psam卡状况
     public static boolean samCardState;
     //psam卡终端机编号
-    public static String pasmId="";
+    public static String pasmId = "";
+    //闸机是否开启使用状态
+    public static boolean use_state=true;
+    //进出站标记 00进站 01出站
+    public static String check_in_out = "00";
+    //最大重刷卡时间
+    public static long max_swipe_time = 30;
+    //最大旅行时间
+    public static long max_travel_time = 60 * 60 * 2;
+    //站点名6位 bcd
+    public static String station_name="000000";
+    //设备编号8位 bcd
+    public static String deviceMac="00000000";
+    //线路号 bcd
+    public static String line_number="000000";
+    //同站进出免费最大时间
+    public static long max_same_station_time=60*10;
+    //本地流水号
+    public static int localTradeNumber;
     //
 }

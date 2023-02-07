@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.wellsun.bjst_zj_new">
 
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -30,7 +31,8 @@
             android:name="design_height_in_dp"
             android:value="600" />
 
-        <activity android:name=".activity.Permissionctivity"
+        <activity
+            android:name=".activity.Permissionctivity"
             tools:ignore="DuplicateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,8 +40,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="MainActivity"
+        <activity
+            android:name="MainActivity"
             tools:ignore="DuplicateActivity" />
+
+        <service android:name=".service.ReadCardService"/>
+
+        <!--文件存储-->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.wellsun.bjst_zj_new.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
     </application>
 
 </manifest>
