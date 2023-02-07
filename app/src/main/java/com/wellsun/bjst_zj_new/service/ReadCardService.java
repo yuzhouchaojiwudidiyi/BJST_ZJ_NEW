@@ -92,7 +92,7 @@ public class ReadCardService extends Service {
                 try {
                     //处理逻辑
                     consume();
-                    Thread.sleep(2000);
+                    Thread.sleep(200);
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.v("异常",e.toString());
@@ -170,7 +170,7 @@ public class ReadCardService extends Service {
                     }
                     //判断黑名单
                     if (StaticData.blackList != null && StaticData.blackList.contains(cardId)) {
-                        EventBus.getDefault().post(VoiceTipCodeEm.warn_card_blocked);
+                        EventBus.getDefault().post(VoiceTipCodeEm.warn_card_black);
                         return;
                     }
                     //选电子钱包

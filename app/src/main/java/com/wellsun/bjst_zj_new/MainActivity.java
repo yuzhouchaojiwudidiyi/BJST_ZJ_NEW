@@ -39,6 +39,7 @@ public class MainActivity extends BaseActivity {
     private TextView tvUpload;
     private TextView tvNetwork;
     private TextView tvMode;
+    private Handler handlerShowState;
 
     public int getLayoutId() {
         return R.layout.activity_main;
@@ -64,6 +65,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        handlerShowState = new Handler();
         Cmd.connectD8(this);                   //初始化读卡器
         if (!StaticData.readCardState) {               //读卡器连接异常
             ivShow.setImageResource(R.drawable.error_card_reader);
@@ -94,7 +96,73 @@ public class MainActivity extends BaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void cardConsumeState(VoiceTipCodeEm em) {
         Log.v("记录指令",em.toString());
+        handlerShowState.removeCallbacksAndMessages(null);
+        ivShow.setImageResource(em.getSrc());
         App.tts.speakText(em.getTip());
+        switch (em){
+            case warn_already_checked_in:  //已经进站
+
+                break;
+            case warn_already_checked_out: //已经出站
+
+                break;
+            case warn_card_black:         //黑名单
+
+                break;
+            case  warn_card_no_enable:    //卡片未激活
+
+                break;
+            case warn_set_date:           //设置日期
+
+                break;
+            case warn_cardLocked:         //卡片锁定
+
+                break;
+            case warn_invalid_card:       //过期失效卡
+
+                break;
+            case warn_low_balance:        //余额不足
+
+                break;
+            case warn_manageCard:         //管理卡
+
+                break;
+            case warn_stationLocked:      //闸机未启用
+
+                break;
+            case error_noset_distance:    //矩阵表未设置
+
+                break;
+            case error_read_wallet_fail:  //读取电子钱包失败
+
+                break;
+            case punish_already_checked_in:
+
+                break;
+            case punish_already_checked_out:
+
+                break;
+            case punish_travel_overtime:
+
+                break;
+            case success_checked_in:      //请进站
+
+                break;
+            case success_checked_out_free://免费出站
+
+                break;
+            case success_checked_out:     //请出站
+
+                break;
+        }
+        Runnable runnableState = new Runnable() {
+            @Override
+            public void run() {
+                ivShow.setImageResource(R.drawable.welcome);
+//                flConsume.setVisibility(View.GONE);
+            }
+        };
+        handlerShowState.postDelayed(runnableState, 6000);//延迟3秒恢复
 
     }
 

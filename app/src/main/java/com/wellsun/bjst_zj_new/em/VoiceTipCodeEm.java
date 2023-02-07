@@ -16,7 +16,7 @@ public enum VoiceTipCodeEm {
     warn_card_no_enable(4, R.drawable.error_card_no_enable, "卡片未启用"),
     warn_set_date(5, R.drawable.error_set_date, "请设置日期"),
     warn_invalid_card(6, R.drawable.error_invalid_card, "失效过期卡"),
-    warn_card_blocked(7, R.drawable.error_card_blocked, "黑名单卡"),
+    warn_card_black(7, R.drawable.error_card_blocked, "黑名单卡"),
     warn_low_balance(9, R.drawable.worn_no_balance, "余额不足"),
     warn_already_checked_in(10, R.drawable.worn_already_checked_in, "已经进站"),
     warn_already_checked_out(11, R.drawable.worn_already_checked_out, "已经出站"),
